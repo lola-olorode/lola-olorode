@@ -7,22 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root {
-            --primary: #1a1a1a;
-            --secondary: #4a5568;
-            --accent: #2d3748;
-            --bg: #f8fafc;
-            --white: #ffffff;
-            --border: #e2e8f0;
+       :root {
+            /* Updated to match index.html background colors */
+            --primary: #ffffff; /* Text becomes white for dark background */
+            --secondary: #cbd5e0;
+            --accent: #4a5568;
+            --bg-dark: #121212; 
+            --bg-light: #2c2c2c;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.7;
             color: var(--primary);
-            background-color: var(--bg);
+            /* Matching the radial gradient from your index.html */
+            background: radial-gradient(circle, var(--bg-light) 0%, var(--bg-dark) 100%);
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
 
         .no-print-nav {
@@ -50,11 +52,12 @@
         .cv-container {
             max-width: 1000px;
             margin: 0 auto 50px auto;
-            background: var(--white);
+            /* Semi-transparent dark background */
+            background: rgba(26, 26, 26, 0.8); 
             display: grid;
             grid-template-columns: 320px 1fr;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            min-height: 100vh;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Sidebar Styling */
@@ -112,15 +115,18 @@
         }
 
         /* Main Content Styling */
-        .main-content { padding: 60px 50px; }
+        .main-content {
+            padding: 60px 50px;
+            background: transparent; /* Allows the container background to show through */
+        }
 
         .summary-box {
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.05);
             padding: 25px;
-            border-left: 4px solid var(--primary);
+            border-left: 4px solid #ffffff;
             margin-bottom: 40px;
             font-size: 0.95rem;
-            color: var(--secondary);
+            color: #e2e8f0;
         }
 
         h2.section-title {
@@ -162,18 +168,19 @@
 
         /* Print Logic */
         @media print {
-            .no-print-nav { display: none; }
-            .cv-container { 
-                display: block; 
-                box-shadow: none; 
-                margin: 0;
-                grid-template-columns: 1fr;
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
             }
-            .sidebar { background: white; color: black; padding: 0; border-bottom: 2px solid black; }
-            .sidebar h1, .sidebar-tagline, .sidebar-h2, .contact-link { color: black; }
-            .sidebar-section { margin-bottom: 15px; }
-            .main-content { padding: 20px 0; }
-            .skill-pill { border: 1px solid #ccc; background: transparent; color: black; }
+            .cv-container {
+                display: block;
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            .sidebar {
+                background: #f0f0f0 !important;
+                color: #000000 !important;
+            }
         }
 
         @media (max-width: 800px) {
