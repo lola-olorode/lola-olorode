@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,15 +99,32 @@
             margin-bottom: 15px;
         }
 
-        .social-icons a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            opacity: 0.7;
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        .social-icons a:hover { opacity: 1; }
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: white;
+            color: #1a1a1a; /* Flips the color on hover for a pro look */
+            transform: translateY(-3px); /* Subtle lift effect */
+        }
     </style>
 </head>
 <body>
@@ -133,9 +151,15 @@
     <div class="contact">
         <p>Connect with me:</p>
         <div class="social-icons">
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">Twitter</a>
+            <a href="https://linkedin.com/in/funmilola-olorode" target="_blank" title="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/lola-olorode" target="_blank" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="mailto:funmilolaolorode@aol.com" title="Email">
+                <i class="fa-regular fa-envelope"></i>
+            </a>
         </div>
     </div>
 
