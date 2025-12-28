@@ -99,17 +99,67 @@
         li { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; }
 
         @media print {
-            body { background: white; color: black; }
-            .cv-container { display: block; background: white; border: none; box-shadow: none; }
-            .sidebar { width: 100%; border: none; background: white; color: black; padding: 0; }
-            .main-content { padding: 20px 0; color: black; }
-            .no-print-nav, .progress-bg { display: none; }
-            li { color: black; }
-        }
-
-        @media (max-width: 850px) {
-            .cv-container { flex-direction: column; }
-            .sidebar { width: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+                body { 
+                background: #ffffff !important; 
+                color: #000000 !important; 
+                margin: 0; 
+                padding: 0;
+            }
+    
+            /* Force the two-column layout to stay intact */
+            .cv-container { 
+                display: flex !important; /* Keep Sidebar and Main Content side-by-side */
+                flex-direction: row !important;
+                background: #ffffff !important; 
+                border: none !important;
+                box-shadow: none !important;
+                width: 100% !important;
+            }
+    
+            /* Style the Sidebar for Print */
+            .sidebar { 
+                width: 30% !important; 
+                background: #f8fafc !important; /* Very light gray to distinguish sidebar */
+                border-right: 1px solid #e2e8f0 !important;
+                padding: 30px !important;
+                -webkit-print-color-adjust: exact; /* Forces background colors to print */
+            }
+    
+            /* Style the Main Content for Print */
+            .main-content { 
+                width: 70% !important; 
+                padding: 30px !important;
+                color: #000000 !important;
+            }
+    
+            /* Ensure text is black and readable */
+            h1, h2, .sidebar-h2, .section-title, strong { 
+                color: #000000 !important; 
+            }
+            
+            .sidebar-tagline, .exp-sub { 
+                color: #1a202c !important; /* Darker accent for print */
+                font-weight: bold;
+            }
+    
+            li, .summary-box { 
+                color: #000000 !important; 
+            }
+    
+            /* Hide the Navigation Buttons on the printout */
+            .no-print-nav { 
+                display: none !important; 
+            }
+    
+            /* Show full progress bars instead of empty ones */
+            .progress-bg { 
+                border: 1px solid #000 !important; 
+                height: 8px !important; 
+            }
+            .progress-fill { 
+                background: #333 !important; 
+                width: 90% !important; /* Show approximate skill level */
+            }
         }
     </style>
 </head>
