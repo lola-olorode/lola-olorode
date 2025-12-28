@@ -7,229 +7,192 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-       :root {
-            --primary: #ffffff;      /* Pure white for headers */
-            --secondary: #cbd5e0;    /* Light gray for body text */
-            --accent: #4fd1c5;       /* Teal color for icons and accents */
-            --border: rgba(255, 255, 255, 0.1);
+       :root  {
+            --primary-bg: #1a202c; /* Deep Slate Edge */
+            --secondary-bg: #2d3748; /* Deep Slate Center */
+            --container-bg: rgba(15, 23, 42, 0.8);
+            --accent-teal: #4fd1c5;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--secondary);
-            /* MATCHING YOUR INDEX.HTML GRADIENT EXACTLY */
-            background: radial-gradient(circle, #2d3748 0%, #1a202c 100%);
+            color: var(--text-main);
+            background: radial-gradient(circle, var(--secondary-bg) 0%, var(--primary-bg) 100%);
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        .no-print-nav {
-            max-width: 1000px;
-            margin: 20px auto;
+        /* Navigation */
+        .top-nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px;
             display: flex;
             justify-content: space-between;
-            padding: 0 20px;
         }
 
-        .btn {
+        .btn-nav {
             text-decoration: none;
-            color: var(--primary);
+            color: var(--text-main);
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border: 1px solid var(--primary);
+            letter-spacing: 2px;
             padding: 10px 20px;
-            transition: 0.3s ease;
-            font-weight: 500;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
         }
 
-        .btn:hover { background: var(--primary); color: var(--white); }
-
-        .cv-container {
-                max-width: 1000px;
-                margin: 0 auto 50px auto;
-                /* This makes the CV area a bit darker than the body for contrast */
-                background: rgba(10, 15, 25, 0.7); 
-                display: grid;
-                grid-template-columns: 320px 1fr;
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-                border: 1px solid var(--border);
-                backdrop-filter: blur(10px); /* Subtle glass effect */
+        .btn-nav:hover {
+            background: var(--text-main);
+            color: var(--primary-bg);
         }
 
-        /* Sidebar Styling */
-        .sidebar {
-            background-color: rgba(0, 0, 0, 0.3); /* Slightly darker sidebar */
-            border-right: 1px solid var(--border);
+        /* CV Layout */
+        .cv-wrapper {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            background: var(--container-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
         }
 
-        .sidebar h1 {
-            font-size: 1.8rem;
+        /* Left Sidebar */
+        .cv-sidebar {
+            padding: 60px 40px;
+            border-right: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .name-header h1 {
+            font-weight: 300;
+            font-size: 2rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            line-height: 1.2;
-            margin-bottom: 10px;
-            font-weight: 400;
+            margin: 0;
         }
 
-        .sidebar-tagline {
+        .job-tag {
+            color: var(--accent-teal);
             font-size: 0.8rem;
-            color: #a0aec0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin: 10px 0 40px;
+        }
+
+        .sidebar-section { margin-bottom: 45px; }
+        .sidebar-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .contact-item i { width: 25px; color: var(--accent-teal); }
+
+        /* Progress Bars */
+        .skill-bar-item { margin-bottom: 20px; }
+        .skill-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 40px;
-            display: block;
+            margin-bottom: 8px;
         }
 
-        .sidebar-section { margin-bottom: 35px; }
-        .sidebar-h2 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 1px solid #4a5568;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            color: #cbd5e0;
+        .bar-bg {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
         }
 
-        .contact-link {
-            display: block;
-            color: #e2e8f0;
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
+        .bar-fill {
+            height: 100%;
+            background: var(--accent-teal);
+            width: 0;
+            transition: width 1.5s ease-out;
         }
 
-        .skill-pill {
-            display: inline-block;
-            background: #2d3748;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            border-radius: 3px;
-            margin: 0 5px 8px 0;
-            border: 1px solid #4a5568;
+        /* Main Content Area */
+        .cv-main { padding: 60px 50px; }
+
+        .summary-card {
+            background: rgba(79, 209, 197, 0.05);
+            border-left: 3px solid var(--accent-teal);
+            padding: 30px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 50px;
         }
 
-        /* Main Content Styling */
-        .main-content {
-            padding: 60px 50px;
-        }
-
-        .summary-box {
-                background: rgba(255, 255, 255, 0.05); /* Light transparent box */
-                padding: 25px;
-                border-left: 4px solid var(--accent); /* Adds a pop of color */
-                margin-bottom: 40px;
-                font-size: 0.95rem;
-                color: #e2e8f0;
-        }
-
-        /* Ensure headings are bright white */
-        h1, h2, .exp-header, strong {
-            color: var(--primary) !important;
-        }
-
-        h2.section-title {
+        .section-header {
             font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary);
-            margin-bottom: 25px;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
         }
 
-        h2.section-title::after {
+        .section-header::after {
             content: "";
             flex: 1;
             height: 1px;
-            background: var(--border);
+            background: var(--border-color);
             margin-left: 20px;
         }
 
-        .exp-item { margin-bottom: 35px; }
-        .exp-header {
+        .exp-block { margin-bottom: 40px; }
+        .exp-top {
             display: flex;
             justify-content: space-between;
-            font-weight: 600;
-            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 5px;
         }
+
         .exp-sub {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            color: var(--secondary);
-            font-style: italic;
-            margin-bottom: 10px;
+            color: var(--accent-teal);
+            margin-bottom: 15px;
         }
 
-        ul { padding-left: 18px; margin: 0; }
-        li { font-size: 0.9rem; margin-bottom: 6px; color: #4a5568; }
+        .exp-list { padding-left: 18px; margin: 0; }
+        .exp-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
 
-        /* Print Logic */
         @media print {
-            body {
-                background: white !important;
-                color: black !important;
-            }
-            .cv-container {
-                display: block;
-                background: white !important;
-                color: black !important;
-                box-shadow: none;
-            }
-            h1, h2, .exp-header, strong {
-                color: black !important;
-            }
-            .no-print-nav {
-                display: none;
-            }
-            .sidebar {
-                background: #f0f0f0 !important;
-                color: #000000 !important;
-            }
-        }
-
-        @media (max-width: 800px) {
-            .cv-container { grid-template-columns: 1fr; }
-            .sidebar { padding: 40px 20px; }
-        }
-
-        .skill-container {
-            margin-bottom: 18px;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            margin-bottom: 5px;
-            color: #cbd5e0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .progress-bg {
-            background-color: #2d3748;
-            height: 6px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #4fd1c5 0%, #38b2ac 100%);
-            height: 100%;
-            width: 0; /* Starts at 0 for the animation */
-            transition: width 1.5s cubic-bezier(0.1, 0, 0.2, 1);
-            border-radius: 10px;
-        }
-
-        /* Ensure bars are visible for printing */
-        @media print {
-            .progress-bg { border: 1px solid #000; height: 10px; }
-            .progress-fill { background: #333 !important; width: 90% !important; }
+            body { background: white; color: black; }
+            .cv-wrapper { display: block; box-shadow: none; border: none; background: white; }
+            .cv-sidebar { border: none; border-bottom: 1px solid #eee; background: white; color: black; padding: 20px 0; }
+            .cv-main { padding: 20px 0; color: black; }
+            .no-print { display: none; }
+            .exp-list li { color: black; }
         }
     </style>
 </head>
