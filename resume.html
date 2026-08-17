@@ -69,14 +69,13 @@
         .sidebar-h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 20px; }
 
         /* CONTACT VISIBILITY FIX */
-        .contact-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 0.85rem; color: var(black); text-decoration: none; }
+        .contact-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 0.85rem; color: var(--text-white); text-decoration: none; }
         .contact-item i { color: var(--accent-teal) !important; width: 25px; font-size: 1rem; }
 
         /* SKILLS */
-        .skill-container { margin-bottom: 20px; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(black); margin-bottom: 5px; }
-        .progress-bg { height: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--accent-teal); transition: 1.5s ease-out; }
+        .skill-container { margin-bottom: 18px; }
+        .skill-label { font-size: 0.8rem; color: var(--text-white); margin-bottom: 4px; }
+        .skill-detail { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
 
         .main-content { padding: 50px; flex: 1; }
         .summary-box { background: rgba(79, 209, 197, 0.05); border-left: 3px solid var(--accent-teal); padding: 25px; margin-bottom: 40px; }
@@ -98,9 +97,7 @@
             .sidebar { width: 30% !important; background: #f8fafc !important; color: black !important; border-right: 1px solid #eee !important; -webkit-print-color-adjust: exact; }
             .main-content { width: 70% !important; color: black !important; }
             .contact-item i, .exp-sub, .sidebar-tagline { color: #008080 !important; }
-            h1, h2, .sidebar-h2, .section-title, ul, li { color: black !important; }
-            .progress-bg { border: 1px solid #ddd !important; }
-            .progress-fill { background: #333 !important; }
+            h1, h2, .sidebar-h2, .section-title, ul, li, .skill-label, .skill-detail { color: black !important; }
         }
     </style>
 </head>
@@ -116,8 +113,8 @@
 
     <div class="cv-container">
         <aside class="sidebar">
-            <h1>Funmilola Olorode</h1>
-            <span class="sidebar-tagline">QA Engineer</span>
+            <h1>Funmilola Adesewa Olorode</h1>
+            <span class="sidebar-tagline">Software Test Engineer | ISTQB Certified</span>
 
             <div class="sidebar-section">
                 <h2 class="sidebar-h2">Contact</h2>
@@ -129,33 +126,53 @@
         <div>
 
             <div class="sidebar-section">
-                <h2 class="sidebar-h2">Technical Proficiency</h2>
+                <h2 class="sidebar-h2">Technical Skills</h2>
                 <div class="skill-container">
-                    <div class="skill-info"><span>Manual Testing</span><span></span></div>
-                    <div class="progress-bg"><div class="progress-fill" data-percent="95"></div></div>
+                    <div class="skill-label"><strong>Automation</strong></div>
+                    <div class="skill-detail">Selenium WebDriver (Ruby, RSpec), Page Object Model</div>
                 </div>
                 <div class="skill-container">
-                    <div class="skill-info"><span>Automation using Selenium WebDriver (Ruby) & Page Object Model</span><span></span></div>
-                    <div class="progress-bg"><div class="progress-fill" data-percent="95"></div></div>
+                    <div class="skill-label"><strong>API Testing</strong></div>
+                    <div class="skill-detail">REST API validation, data flows, integration accuracy, error handling</div>
                 </div>
                 <div class="skill-container">
-                    <div class="skill-info"><span>SQL for data validation</span><span></span></div>
-                    <div class="progress-bg"><div class="progress-fill" data-percent="95"></div></div>
+                    <div class="skill-label"><strong>Functional Testing</strong></div>
+                    <div class="skill-detail">UAT, Regression, Exploratory, Integration, Sanity, Smoke, Usability</div>
                 </div>
                 <div class="skill-container">
-                    <div class="skill-info"><span>REST API testing with Postman</span><span></span></div>
-                    <div class="progress-bg"><div class="progress-fill" data-percent="95"></div></div>
+                    <div class="skill-label"><strong>Non-Functional Testing</strong></div>
+                    <div class="skill-detail">Performance and load assessment, cross-environment testing</div>
                 </div>
                 <div class="skill-container">
-                    <div class="skill-info"><span>CI/CD integration using GitHub Actions</span><span></span></div>
-                    <div class="progress-bg"><div class="progress-fill" data-percent="95"></div></div>
+                    <div class="skill-label"><strong>Defect Management</strong></div>
+                    <div class="skill-detail">Root cause analysis, retesting, tracking to resolution</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Test Documentation</strong></div>
+                    <div class="skill-detail">Test plans, exploratory notes, QA process guides (Confluence)</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>SQL</strong></div>
+                    <div class="skill-detail">Data validation and query-level testing</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Git / GitHub</strong></div>
+                    <div class="skill-detail">Version control, branching strategy, repository management</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Tooling</strong></div>
+                    <div class="skill-detail">JIRA, Confluence, Postman, VS Code, BrowserStack</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Ways of Working</strong></div>
+                    <div class="skill-detail">Agile sprint ceremonies, cross-functional collaboration, stakeholder reporting</div>
                 </div>
             </div>
 
             <div class="sidebar-section">
                 <h2 class="sidebar-h2">Education</h2>
-                <p style="font-size: 0.85rem; margin-bottom: 5px;"><strong>MSc Business Analytics</strong><br>University of Dundee, 2024</p>
-                <p style="font-size: 0.85rem;"><strong>BSc Integrated Science</strong><br>University of Lagos, 2014</p>
+                <p style="font-size: 0.85rem; margin-bottom: 5px;"><strong>MSc Business Analytics & Big Data</strong> (Merit)<br>University of Dundee, 2024</p>
+                <p style="font-size: 0.85rem;"><strong>BSc (Ed.) Integrated Science</strong><br>University of Lagos, 2014</p>
             </div>
 
             <div class="sidebar-section">
@@ -166,7 +183,7 @@
 
         <main class="main-content">
             <div class="summary-box">
-                ISTQB-certified Software Test Engineer with an MSc in Business Analytics. I optimize software quality and identify patterns that enhance end-to-end user experiences.
+                Testing, to me, is about more than finding bugs. I'm a QA / Test Engineer with experience across manual and automated testing, building frameworks and working across integrated platforms, with a genuine interest in how quality fits into the bigger picture of what gets shipped. My day-to-day involves designing and executing test cases, testing REST APIs via Postman, raising clear defect reports in JIRA, and contributing to Agile ceremonies as a quality voice.
             </div>
 
             <h2 class="section-title">Experience</h2>
@@ -175,20 +192,25 @@
                 <div class="exp-header"><span>Software Test Engineer</span> <span>2024 - Present</span></div>
                 <div class="exp-sub"><span>QV Systems</span> <span>United Kingdom</span></div>
                 <ul>
-                    <li>Conduct UAT and manual regression testing to ensure zero defects in production.</li>
-                    <li>Maintain and improve Selenium automated test cases written in Ruby.</li>
-                    <li>Perform API manual testing using Postman for system integration reliability.</li>
-                    <li>Manage defect tracking via JIRA and document QA processes.</li>
+                    <li>Designed and built a Selenium automation framework (Ruby, RSpec, Page Object Model) with a config-driven test suite architecture, timestamped log reporting, and Slack webhook integration for automated result notifications.</li>
+                    <li>Design and execute manual test cases each sprint cycle (regression, exploratory, UAT) across multiple integrated web platforms, making structured coverage decisions based on change scope, dependencies, and business risk.</li>
+                    <li>Designed and maintained an automated regression suite validating financial calculation outputs across multiple products, catching numerical regressions before they reach production.</li>
+                    <li>Developed domain-level understanding of the industry, enabling precise, meaningful test assertions rather than surface-level checks.</li>
+                    <li>Handle REST API testing via Postman, validating data flows and integration accuracy across the system.</li>
+                    <li>Raise clear, actionable defect reports in JIRA with precise reproduction steps, severity/priority assessments, and full traceability through fix and retest.</li>
+                    <li>Provide go/no-go quality assessments for releases, communicating test coverage, risk, and confidence to product and development stakeholders.</li>
+                    <li>Document test plans, scripts, and QA processes in Confluence, structuring test scripts with data summary and assertion reference tables for clarity and reusability.</li>
+                    <li>Actively involved in all sprint ceremonies — backlog refinement, planning, retrospectives — consistently challenging unclear acceptance criteria and raising quality concerns early.</li>
                 </ul>
             </div>
 
             <div class="exp-item">
-                <div class="exp-header"><span>Customer Support Specialist</span> <span>2024 - 2024</span></div>
+                <div class="exp-header"><span>Customer Support Specialist</span> <span>2024</span></div>
                 <div class="exp-sub"><span>QV Systems</span> <span>United Kingdom</span></div>
                 <ul>
-                    <li>Investigated over 100 software issues per month, leading to a 15% reduction in recurring incidents.</li>
-                    <li>Collaborated with QA teams to prioritize critical bugs, increasing satisfaction scores by 10%.</li>
-                    <li>Assisted with pre-deployment testing of minor software fixes.</li>
+                    <li>Investigated and resolved software incidents, reducing recurring issues through structured root cause analysis.</li>
+                    <li>Worked directly with QA and development teams to prioritise high-impact defects and validate fixes before re-release.</li>
+                    <li>Supported pre-deployment testing of patches, contributing a user-perspective lens to quality assurance.</li>
                 </ul>
             </div>
 
@@ -196,8 +218,8 @@
                 <div class="exp-header"><span>Customer Success Analyst</span> <span>2023 - 2024</span></div>
                 <div class="exp-sub"><span>Loro Farms and Tech</span> <span>Nigeria</span></div>
                 <ul>
-                    <li>Utilized SQL and Power BI to analyze customer data, increasing retention by 12%.</li>
-                    <li>Generated performance reports leading to a 20% improvement in user satisfaction.</li>
+                    <li>Used SQL and Power BI to analyse customer usage patterns, producing reports that informed product improvements and measurably improved user retention.</li>
+                    <li>Translated data insights into clear, actionable recommendations for product and engineering stakeholders.</li>
                 </ul>
             </div>
 
@@ -205,8 +227,17 @@
                 <div class="exp-header"><span>Business Associate</span> <span>2021 - 2022</span></div>
                 <div class="exp-sub"><span>Globacom Ltd</span> <span>Nigeria</span></div>
                 <ul>
-                    <li>Identified and documented defects, achieving a 10% increase in engagement.</li>
-                    <li>Enhanced product compliance by 15% through usability testing.</li>
+                    <li>Identified and documented system defects and usability issues, contributing to improved product compliance and customer engagement.</li>
+                    <li>Conducted structured usability testing as part of product release cycles.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header"><span>Customer Support Associate</span> <span>2019 - 2020</span></div>
+                <div class="exp-sub"><span>Globacom Ltd</span> <span>Nigeria</span></div>
+                <ul>
+                    <li>Maintained an excellent SLA resolution rate on technical support cases, with clear escalation protocols and documented issue tracking.</li>
+                    <li>Produced internal knowledge base articles to support consistent team responses to recurring issues.</li>
                 </ul>
             </div>
 
@@ -214,24 +245,14 @@
                 <div class="exp-header"><span>Bank Teller</span> <span>2017 - 2019</span></div>
                 <div class="exp-sub"><span>Access Bank plc</span> <span>Nigeria</span></div>
                 <ul>
-                    <li>Processed 500+ daily transactions accurately while adhering to regulatory guidelines.</li>
-                    <li>Balanced tills daily and assisted with end-of-day reconciliation.</li>
+                    <li>Processed high-volume daily transactions accurately and in compliance with regulatory requirements.</li>
                 </ul>
             </div>            
         </main>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const fills = document.querySelectorAll('.progress-fill');
-            // Trigger animation after a slight delay
-            setTimeout(() => {
-                fills.forEach(bar => {
-                    const percentage = bar.getAttribute('data-percent');
-                    bar.style.width = percentage + '%';
-                });
-            }, 400);
-        });
+        // Progress bars removed in favor of a plain skills list — no animation needed.
     </script>
 </body>
 </html>

@@ -186,6 +186,59 @@
             border-color: #b0b0b0;
         }
 
+        /* Career Summary */
+        .career-summary {
+            max-width: 560px;
+            color: #c8c8c8;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            text-align: center;
+            margin: 4px 0 10px 0;
+        }
+
+        /* Experience Section */
+        .exp-entry {
+            text-align: left;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .exp-entry:last-child { border-bottom: none; }
+
+        .exp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .exp-role {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-white);
+        }
+
+        .exp-dates {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+        }
+
+        .exp-company {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin: 2px 0 8px 0;
+        }
+
+        .exp-desc {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin: 0;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -207,19 +260,74 @@
 
     <div class="line"></div>
 
+    <p class="career-summary">
+        My path into QA started on the front line — working directly with customers and data, learning first-hand what "quality" actually means to the people using a product. Since 2024 I've worked as a Software Test Engineer, combining structured manual testing, defect analysis, and an MSc in Business Analytics to catch not just bugs, but the patterns behind them. I bring an analytical, detail-driven approach to every stage of the QA process, and I'm continuing to grow across the full breadth of the discipline.
+    </p>
+
     <div class="nav-container">
-        <a href="javascript:void(0)" class="nav-item" onclick="toggleAbout()">About</a>
+        <a href="javascript:void(0)" class="nav-item" onclick="toggleAbout()">The Journey</a>
+        <a href="javascript:void(0)" class="nav-item" onclick="toggleExperience()">Experience</a>
         <a href="javascript:void(0)" class="nav-item" onclick="toggleProjects()">Projects</a>
-        <a href="https://github.com/lola-olorode?tab=repositories" class="nav-item" target="_blank">Work on GitHub</a>
         <a href="resume.html" class="nav-item">Resume</a>
     </div>
 
     <div id="about-section" style="display: none; max-width: 600px; margin-top: 30px; animation: fadeIn 0.8s;">
         <p style="color: #b0b0b0; line-height: 1.6; font-size: 0.95rem; text-align: justify;">
-            I am a <strong>QA Engineer</strong> dedicated to bridging the gap between technical precision and business value. 
-            With an <strong>MSc in Business Analytics & Big Data</strong> and <strong>ISTQB certification</strong>, I don't just find bugs, I analyze patterns to improve overall product reliability. 
-            My approach combines structured manual testing with scalable automated testing frameworks, leveraging data-driven insights to ensure user-focused digital products meet the highest standards of quality.
+            My path here wasn't a straight line into QA. I started in banking, then moved through customer support, business operations, and data analysis — each role sharpening a different piece of what I now bring to testing: precision under pressure, root-cause thinking, defect documentation, and data-driven judgment.
+            That foundation, plus an <strong>MSc in Business Analytics & Big Data</strong> and <strong>ISTQB certification</strong>, led me into QA — first supporting QV Systems' customers directly, then into the <strong>Software Test Engineer</strong> role I hold today.
+            The throughline across every stop: I don't just check boxes, I care about what "quality" actually means to the people on the other end of the product.
         </p>
+    </div>
+
+    <div id="experience-section" style="display: none; max-width: 620px; margin-top: 30px; animation: fadeIn 0.8s;">
+        <div class="exp-entry">
+            <div class="exp-row">
+                <span class="exp-role">Software Test Engineer</span>
+                <span class="exp-dates">2024 — Present</span>
+            </div>
+            <p class="exp-company">QV Systems, United Kingdom</p>
+            <p class="exp-desc">Designed and built a Selenium automation framework (Ruby, RSpec, Page Object Model) with a config-driven test suite architecture, timestamped log reporting, and Slack webhook integration for automated result notifications. Design and execute manual test cases each sprint (regression, exploratory, UAT), maintain an automated regression suite validating financial calculation outputs, handle REST API testing via Postman, and raise defect reports in JIRA with full traceability through fix and retest. Provide go/no-go quality assessments for releases and document test plans and QA processes in Confluence.</p>
+        </div>
+        <div class="exp-entry">
+            <div class="exp-row">
+                <span class="exp-role">Customer Support Specialist</span>
+                <span class="exp-dates">2024</span>
+            </div>
+            <p class="exp-company">QV Systems, United Kingdom</p>
+            <p class="exp-desc">Investigated and resolved software incidents, reducing recurring issues through structured root cause analysis. Worked directly with QA and development teams to prioritise high-impact defects and supported pre-deployment testing of patches.</p>
+        </div>
+        <div class="exp-entry">
+            <div class="exp-row">
+                <span class="exp-role">Customer Success Analyst</span>
+                <span class="exp-dates">2023 — 2024</span>
+            </div>
+            <p class="exp-company">Loro Farms and Tech, Nigeria</p>
+            <p class="exp-desc">Used SQL and Power BI to analyse customer usage patterns, producing reports that informed product improvements and translating data insights into clear recommendations for product and engineering stakeholders.</p>
+        </div>
+        <div class="exp-entry">
+            <div class="exp-row">
+                <span class="exp-role">Business Associate</span>
+                <span class="exp-dates">2021 — 2022</span>
+            </div>
+            <p class="exp-company">Globacom Ltd, Nigeria</p>
+            <p class="exp-desc">Identified and documented system defects and usability issues, and conducted structured usability testing as part of product release cycles.</p>
+        </div>
+        <div class="exp-entry">
+            <div class="exp-row">
+                <span class="exp-role">Customer Support Associate</span>
+                <span class="exp-dates">2019 — 2020</span>
+            </div>
+            <p class="exp-company">Globacom Ltd, Nigeria</p>
+            <p class="exp-desc">Maintained a strong SLA resolution rate on technical support cases with clear escalation protocols, and produced internal knowledge base articles to support consistent team responses.</p>
+        </div>
+        <div class="exp-entry">
+            <div class="exp-row">
+                <span class="exp-role">Bank Teller</span>
+                <span class="exp-dates">2017 — 2019</span>
+            </div>
+            <p class="exp-company">Access Bank plc, Nigeria</p>
+            <p class="exp-desc">Processed high-volume daily transactions accurately and in compliance with regulatory requirements — early grounding in precision and process discipline.</p>
+        </div>
     </div>
 
     <div id="projects-section" style="display: none; max-width: 640px; margin-top: 30px; animation: fadeIn 0.8s;">
@@ -256,16 +364,29 @@
 <script>
 function toggleAbout() {
     var x = document.getElementById("about-section");
+    var e = document.getElementById("experience-section");
     var p = document.getElementById("projects-section");
+    e.style.display = "none";
     p.style.display = "none";
     x.style.display = (x.style.display === "none") ? "block" : "none";
 }
 
+function toggleExperience() {
+    var e = document.getElementById("experience-section");
+    var x = document.getElementById("about-section");
+    var p = document.getElementById("projects-section");
+    x.style.display = "none";
+    p.style.display = "none";
+    e.style.display = (e.style.display === "none") ? "block" : "none";
+}
+
 function toggleProjects() {
-    var x = document.getElementById("projects-section");
-    var a = document.getElementById("about-section");
-    a.style.display = "none";
-    x.style.display = (x.style.display === "none") ? "block" : "none";
+    var p = document.getElementById("projects-section");
+    var x = document.getElementById("about-section");
+    var e = document.getElementById("experience-section");
+    x.style.display = "none";
+    e.style.display = "none";
+    p.style.display = (p.style.display === "none") ? "block" : "none";
 }
 </script>
     
