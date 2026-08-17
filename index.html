@@ -126,6 +126,66 @@
             transform: translateY(-3px); /* Subtle lift effect */
         }
 
+        /* Projects Section */
+        .project-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 28px;
+            text-align: left;
+        }
+
+        .project-title {
+            margin: 0 0 12px 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--accent-white);
+        }
+
+        .project-desc {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0 0 18px 0;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tags span {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            color: var(--text-gray);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-white);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            padding-bottom: 3px;
+            transition: 0.3s;
+        }
+
+        .project-link:hover {
+            color: #b0b0b0;
+            border-color: #b0b0b0;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -142,13 +202,14 @@
     <h1>Funmilola Adesewa Olorode</h1>
     
     <div class="tagline">
-       QA Engineer | ISTQB Certified | MSc Business Analytics | SQL 
+       QA Engineer | ISTQB Certified | MSc Business Analytics
     </div>
 
     <div class="line"></div>
 
     <div class="nav-container">
         <a href="javascript:void(0)" class="nav-item" onclick="toggleAbout()">About</a>
+        <a href="javascript:void(0)" class="nav-item" onclick="toggleProjects()">Projects</a>
         <a href="https://github.com/lola-olorode?tab=repositories" class="nav-item" target="_blank">Work on GitHub</a>
         <a href="resume.html" class="nav-item">Resume</a>
     </div>
@@ -160,6 +221,22 @@
             My approach combines structured manual testing with scalable automated testing frameworks, leveraging data-driven insights to ensure user-focused digital products meet the highest standards of quality.
         </p>
     </div>
+
+    <div id="projects-section" style="display: none; max-width: 640px; margin-top: 30px; animation: fadeIn 0.8s;">
+        <div class="project-card">
+            <h3 class="project-title">SauceDemo Test Automation Framework</h3>
+            <p class="project-desc">
+                A Selenium + pytest UI automation suite built with the Page Object Model, covering login, inventory sorting, and cart/checkout flows. Includes a parallel API test suite, environment layering, structured logging with screenshot-on-failure, test tagging (smoke/regression/critical-path), and a GitHub Actions CI pipeline. A manual regression suite and requirement-traceability matrix are documented alongside the automated coverage.
+            </p>
+            <div class="project-tags">
+                <span>Python</span><span>Selenium</span><span>pytest</span><span>REST API</span><span>CI/CD</span>
+            </div>
+            <a href="https://github.com/lola-olorode/saucedemo-portfolio" class="project-link" target="_blank">
+                View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
+
 
     <div class="contact">
         <p>Connect with me:</p>
@@ -179,11 +256,16 @@
 <script>
 function toggleAbout() {
     var x = document.getElementById("about-section");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+    var p = document.getElementById("projects-section");
+    p.style.display = "none";
+    x.style.display = (x.style.display === "none") ? "block" : "none";
+}
+
+function toggleProjects() {
+    var x = document.getElementById("projects-section");
+    var a = document.getElementById("about-section");
+    a.style.display = "none";
+    x.style.display = (x.style.display === "none") ? "block" : "none";
 }
 </script>
     
