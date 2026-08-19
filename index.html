@@ -1,209 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funmilola Adesewa Olorode | QA </title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #808080;
-            --accent-white: #ffffff;
-            --text-gray: #b0b0b0;
+            --bg: #faf5f0;
+            --purple: #8b7cc4;
+            --purple-dark: #6f5fa8;
+            --coral: #f4a89f;
+            --mint: #a8d8c9;
+            --yellow: #f2d17a;
+            --text: #2d2b3a;
+            --text-secondary: #7a7488;
+            --card: #ffffff;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #2d3748 0%, #1a202c 100%);
-            color: var(--accent-white);
-            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .accent-script {
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        /* ===== Splash Screen ===== */
+        #splash {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            overflow: hidden;
+            transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        #splash-bg-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: blur(1.5px) saturate(1.05);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        #splash-bg-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(139, 124, 196, 0.8) 0%, rgba(111, 95, 168, 0.92) 100%);
+            z-index: 1;
+        }
+
+        #splash-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        #splash.hide-splash {
+            transform: translateY(-100%);
+        }
+
+        #splash-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        #splash-text-wrap {
+            background: var(--card);
+            border-radius: 32px;
+            padding: 70px 80px;
+            box-shadow: 0 20px 50px rgba(45, 43, 58, 0.2);
+            text-align: center;
+            max-width: 560px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #splash-text-wrap.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #splash-heart {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        #splash-msg {
+            min-height: 4.5em;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #splash-msg.msg-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #splash-text {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 0 0 10px 0;
+        }
+
+        #splash-subtext {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        #splash-skip {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: 0.3s;
+        }
+
+        #splash-skip:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        body.splash-active {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        @media (max-width: 640px) {
+            #splash-text-wrap {
+                padding: 44px 30px;
+            }
+            #splash-text {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== Sidebar ===== */
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background: linear-gradient(180deg, var(--purple) 0%, var(--purple-dark) 100%);
+            margin: 20px 0 20px 20px;
+            border-radius: 24px;
+            padding: 28px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
+            box-shadow: 0 10px 30px rgba(45, 43, 58, 0.15);
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.3) transparent;
         }
 
-        /* Profile Image */
-        .profile-img {
-            width: 100px;
-            height: 100px;
+        .sidebar-photo {
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
-            border: 2px solid var(--accent-white);
-            margin-bottom: 20px;
             object-fit: cover;
+            border: 3px solid #ffffff;
+            margin-bottom: 12px;
         }
 
-        /* Structural Lines */
-        .line {
-            width: 80%;
+        .sidebar-greeting {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-role {
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            letter-spacing: 0.5px;
+            margin-bottom: 26px;
+        }
+
+        .sidebar-nav {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-divider {
             height: 1px;
-            background-color: rgba(255, 255, 255, 0.2);
-            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 26px 6px 10px 6px;
         }
 
-        h1 {
-            letter-spacing: 8px;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin: 10px 0;
-            font-size: 1.8rem;
-        }
-
-        .tagline {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-        }
-
-        /* Navigation Buttons */
-        .nav-container {
-            display: flex;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        .nav-item {
-            padding: 12px 25px;
-            text-decoration: none;
-            color: var(--accent-white);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
-            transition: 0.3s;
-        }
-
-        .nav-item:last-child { border-right: none; }
-
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Contact Section */
-        .contact {
-            margin-top: 40px;
-        }
-
-        .contact p {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .social-icons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icons a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
+        .sidebar-nav a {
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.25s;
         }
 
-        .social-icons a:hover {
-            background-color: white;
-            color: #1a1a1a; /* Flips the color on hover for a pro look */
-            transform: translateY(-3px); /* Subtle lift effect */
+        .sidebar-nav a i, .sidebar-nav a .nav-icon-emoji {
+            width: 18px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Projects Section */
-        .project-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            padding: 28px;
-            text-align: left;
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.12);
         }
 
-        .project-title {
-            margin: 0 0 12px 0;
-            font-size: 1.05rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: var(--accent-white);
+        .sidebar-nav a.active {
+            background: #ffffff;
+            color: var(--purple-dark);
         }
 
-        .project-desc {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin: 0 0 18px 0;
+        .sidebar-nav a.active i {
+            color: var(--purple-dark);
         }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
+        .sidebar-contact {
+            margin-top: auto;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .project-tags span {
+        .sidebar-contact p {
             font-size: 0.65rem;
             letter-spacing: 1px;
             text-transform: uppercase;
-            padding: 5px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            color: var(--text-gray);
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0 12px 0;
+            text-align: center;
         }
 
-        .project-link {
+        .sidebar-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sidebar-social a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.25s;
+        }
+
+        .sidebar-location {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-social a:hover {
+            background: #ffffff;
+            color: var(--purple-dark);
+        }
+
+        /* ===== Main Content ===== */
+        .main {
+            flex: 1;
+            padding: 40px 40px 60px 40px;
+            max-width: 780px;
+        }
+
+        .main h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+        }
+
+        .main .tagline {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .main .tagline .divider {
+            color: var(--coral);
+            margin: 0 6px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(120deg, var(--purple) 0%, var(--purple-dark) 100%);
+            border-radius: 22px;
+            padding: 30px 34px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            box-shadow: 0 12px 30px rgba(139, 124, 196, 0.3);
+        }
+
+        .hero-banner h1 {
+            color: #ffffff;
+            margin: 0 0 6px 0;
+        }
+
+        .hero-banner .tagline {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0;
+        }
+
+        .hero-banner .tagline .divider {
+            color: var(--yellow);
+        }
+
+        /* Bottom CTA Banner */
+        .cta-banner {
+            background: linear-gradient(120deg, var(--purple-dark) 0%, var(--purple) 100%);
+            border-radius: 22px;
+            padding: 34px 38px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+            box-shadow: 0 12px 30px rgba(139, 124, 196, 0.3);
+        }
+
+        .cta-banner p {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .cta-banner a {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--accent-white);
+            background: #ffffff;
+            color: var(--purple-dark);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 12px 26px;
+            border-radius: 30px;
+            transition: 0.25s;
+            flex-shrink: 0;
+        }
+
+        .cta-banner a:hover {
+            background: var(--yellow);
+            color: var(--text);
+        }
+
+        /* About Me card */
+        .about-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 26px 28px;
+            box-shadow: 0 10px 30px rgba(45, 43, 58, 0.06);
+            margin-bottom: 30px;
+        }
+
+        .about-card-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            font-size: 0.7rem;
             letter-spacing: 1px;
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-            padding-bottom: 3px;
-            transition: 0.3s;
+            color: var(--purple);
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .project-link:hover {
-            color: #b0b0b0;
-            border-color: #b0b0b0;
+        .about-card-label .chevron {
+            transition: transform 0.3s ease;
+            font-size: 0.75rem;
         }
 
-        /* Career Summary */
-        .career-summary {
-            max-width: 560px;
-            color: #c8c8c8;
+        .about-card.collapsed .about-card-label .chevron {
+            transform: rotate(-90deg);
+        }
+
+        .about-card-body {
+            max-height: 400px;
+            overflow: hidden;
+            margin-top: 12px;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
+        }
+
+        .about-card.collapsed .about-card-body {
+            max-height: 0;
+            margin-top: 0;
+        }
+
+        .about-card p {
             font-size: 0.92rem;
-            line-height: 1.7;
-            text-align: center;
-            margin: 4px 0 10px 0;
+            line-height: 1.75;
+            color: var(--text);
+            margin: 0;
         }
 
-        /* Experience Section */
+        /* Section content cards */
+        .content-section {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 28px 30px;
+            box-shadow: 0 10px 30px rgba(45, 43, 58, 0.06);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-heading {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 18px 0;
+        }
+
+        /* Journey */
+        .journey-text {
+            font-size: 0.92rem;
+            line-height: 1.75;
+            color: var(--text);
+            text-align: left;
+        }
+
+        /* Experience */
         .exp-entry {
             text-align: left;
             padding: 16px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(45, 43, 58, 0.07);
         }
 
-        .exp-entry:last-child { border-bottom: none; }
+        .exp-entry:last-child { border-bottom: none; padding-bottom: 0; }
+        .exp-entry:first-child { padding-top: 0; }
 
         .exp-row {
             display: flex;
@@ -216,193 +501,553 @@
         .exp-role {
             font-size: 0.95rem;
             font-weight: 600;
-            color: var(--accent-white);
         }
 
         .exp-dates {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--text-gray);
+            color: var(--purple);
+            font-weight: 600;
         }
 
         .exp-company {
-            font-size: 0.8rem;
-            color: #9ca3af;
-            margin: 2px 0 8px 0;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin: 2px 0 10px 0;
         }
 
-        .exp-desc {
+        .exp-list {
             font-size: 0.85rem;
-            color: #b0b0b0;
-            line-height: 1.6;
+            color: var(--text);
+            line-height: 1.65;
             margin: 0;
+            padding-left: 18px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .exp-list li { margin-bottom: 4px; }
+        .exp-list li:last-child { margin-bottom: 0; }
+        .exp-list li::marker { color: var(--coral); }
+
+        /* Projects */
+        .project-card {
+            border: 1px solid rgba(45, 43, 58, 0.08);
+            border-radius: 16px;
+            padding: 22px 24px;
+            text-align: left;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        
+
+        .project-card + .project-card { margin-top: 16px; }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(45, 43, 58, 0.08);
+        }
+
+        .project-title {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.87rem;
+            line-height: 1.6;
+            margin: 0 0 16px 0;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .project-tags span {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 5px 11px;
+            border-radius: 20px;
+            background: rgba(168, 216, 201, 0.35);
+            color: var(--text);
+        }
+
+        .project-tags span:nth-child(2n) {
+            background: rgba(244, 168, 159, 0.3);
+        }
+
+        .project-tags span:nth-child(3n) {
+            background: rgba(242, 209, 122, 0.35);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--purple-dark);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .project-link:hover { color: var(--purple); }
+
+        /* Tech Stack */
+        .tech-group { margin-bottom: 22px; text-align: left; }
+        .tech-group:last-child { margin-bottom: 0; }
+
+        .tech-group-title {
+            font-size: 0.68rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin: 0 0 12px 0;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: rgba(139, 124, 196, 0.08);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-3px);
+            background: rgba(139, 124, 196, 0.16);
+        }
+
+        .tech-item i { font-size: 1.05rem; }
+
+        /* Toggle helper */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ===== Mobile ===== */
+        @media (max-width: 860px) {
+            body { flex-direction: row; }
+            .sidebar {
+                width: 72px;
+                margin: 10px 0 10px 10px;
+                padding: 18px 10px;
+            }
+            .sidebar-photo { width: 44px; height: 44px; margin-bottom: 0; }
+            .sidebar-greeting, .sidebar-role { display: none; }
+            .sidebar-nav a span.nav-label { display: none; }
+            .sidebar-nav a {
+                padding: 12px;
+                justify-content: center;
+            }
+            .sidebar-contact {
+                padding-top: 14px;
+            }
+            .sidebar-contact p { display: none; }
+            .sidebar-social {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .main { padding: 16px; max-width: 100%; }
+            .hero-banner { padding: 20px; }
+            .hero-banner h1 { font-size: 1.3rem; }
+        }
     </style>
 </head>
-<body>
+<body class="splash-active">
 
-    <img src="Funmilola Olorode.jpg" alt="Funmilola Olorode" class="profile-img">
-
-    <div class="line"></div>
-
-    <h1>Funmilola Adesewa Olorode</h1>
-    
-    <div class="tagline">
-       QA Engineer | ISTQB Certified | MSc Business Analytics
-    </div>
-
-    <div class="line"></div>
-
-    <p class="career-summary">
-        My path into QA started on the front line, working directly with customers and data, learning first-hand what "quality" actually means to the people using a product. Since 2024 I've worked as a Software Test Engineer, combining structured manual testing, defect analysis, and an MSc in Business Analytics to catch not just bugs, but the patterns behind them. I bring an analytical, detail-driven approach to every stage of the QA process, and I'm continuing to grow across the full breadth of the discipline.
-    </p>
-
-    <div class="nav-container">
-        <a href="javascript:void(0)" class="nav-item" onclick="toggleAbout()">The Journey</a>
-        <a href="javascript:void(0)" class="nav-item" onclick="toggleExperience()">Experience</a>
-        <a href="javascript:void(0)" class="nav-item" onclick="toggleProjects()">Projects</a>
-        <a href="resume.html" class="nav-item">Resume</a>
-    </div>
-
-    <div id="about-section" style="display: none; max-width: 600px; margin-top: 30px; animation: fadeIn 0.8s;">
-        <p style="color: #b0b0b0; line-height: 1.6; font-size: 0.95rem; text-align: justify;">
-            My path here wasn't a straight line into QA. I started in banking, then moved through customer support, business operations, and data analysis, each role sharpening a different piece of what I now bring to testing: precision under pressure, root-cause thinking, defect documentation, and data-driven judgment.
-            That foundation, plus an <strong>MSc in Business Analytics & Big Data</strong> and <strong>ISTQB certification</strong>, led me into QA, first supporting QV Systems' customers directly, then into the <strong>Software Test Engineer</strong> role I hold today.
-            The throughline across every stop: I don't just check boxes, I care about what "quality" actually means to the people on the other end of the product.
-        </p>
-    </div>
-
-    <div id="experience-section" style="display: none; max-width: 620px; margin-top: 30px; animation: fadeIn 0.8s;">
-        <div class="exp-entry">
-            <div class="exp-row">
-                <span class="exp-role">Software Test Engineer</span>
-                <span class="exp-dates">2024 - Present</span>
+    <div id="splash">
+        <img id="splash-bg-img" src="Funmilola Olorode.jpeg" alt="">
+        <div id="splash-bg-overlay"></div>
+        <a href="javascript:void(0)" id="splash-skip" onclick="skipSplash()">Skip</a>
+        <div id="splash-inner">
+            <div id="splash-text-wrap">
+                <div id="splash-heart">💜</div>
+                <div id="splash-msg">
+                    <p id="splash-text"></p>
+                    <p id="splash-subtext"></p>
+                </div>
             </div>
-            <p class="exp-company">QV Systems, United Kingdom</p>
-            <p class="exp-desc">Designed and built a Selenium automation framework (Ruby, RSpec, Page Object Model) with a config-driven test suite architecture, timestamped log reporting, and Slack webhook integration for automated result notifications. Design and execute manual test cases each sprint (regression, exploratory, UAT), maintain an automated regression suite validating financial calculation outputs, handle REST API testing via Postman, and raise defect reports in JIRA with full traceability through fix and retest. Provide go/no-go quality assessments for releases and document test plans and QA processes in Confluence.</p>
-        </div>
-        <div class="exp-entry">
-            <div class="exp-row">
-                <span class="exp-role">Customer Support Specialist</span>
-                <span class="exp-dates">2024</span>
-            </div>
-            <p class="exp-company">QV Systems, United Kingdom</p>
-            <p class="exp-desc">Investigated and resolved software incidents, reducing recurring issues through structured root cause analysis. Worked directly with QA and development teams to prioritise high-impact defects and supported pre-deployment testing of patches.</p>
-        </div>
-        <div class="exp-entry">
-            <div class="exp-row">
-                <span class="exp-role">Customer Success Analyst</span>
-                <span class="exp-dates">2023 - 2024</span>
-            </div>
-            <p class="exp-company">Loro Farms and Tech, Nigeria</p>
-            <p class="exp-desc">Used SQL and Power BI to analyse customer usage patterns, producing reports that informed product improvements and translating data insights into clear recommendations for product and engineering stakeholders.</p>
-        </div>
-        <div class="exp-entry">
-            <div class="exp-row">
-                <span class="exp-role">Business Associate</span>
-                <span class="exp-dates">2021 - 2022</span>
-            </div>
-            <p class="exp-company">Globacom Ltd, Nigeria</p>
-            <p class="exp-desc">Identified and documented system defects and usability issues, and conducted structured usability testing as part of product release cycles.</p>
-        </div>
-        <div class="exp-entry">
-            <div class="exp-row">
-                <span class="exp-role">Customer Support Associate</span>
-                <span class="exp-dates">2019 - 2020</span>
-            </div>
-            <p class="exp-company">Globacom Ltd, Nigeria</p>
-            <p class="exp-desc">Maintained a strong SLA resolution rate on technical support cases with clear escalation protocols, and produced internal knowledge base articles to support consistent team responses.</p>
-        </div>
-        <div class="exp-entry">
-            <div class="exp-row">
-                <span class="exp-role">Bank Teller</span>
-                <span class="exp-dates">2017 - 2019</span>
-            </div>
-            <p class="exp-company">Access Bank plc, Nigeria</p>
-            <p class="exp-desc">Processed high-volume daily transactions accurately and in compliance with regulatory requirements, an early grounding in precision and process discipline.</p>
         </div>
     </div>
 
-    <div id="projects-section" style="display: none; max-width: 640px; margin-top: 30px; animation: fadeIn 0.8s;">
-        <div class="project-card">
-            <h3 class="project-title">SauceDemo Test Automation Framework (Python)</h3>
-            <p class="project-desc">
-                A Selenium + pytest UI automation suite built with the Page Object Model, covering login, inventory sorting, and cart/checkout flows. Includes a parallel API test suite, environment layering, structured logging with screenshot-on-failure, test tagging (smoke/regression/critical-path), and a GitHub Actions CI pipeline. A manual regression suite and requirement-traceability matrix are documented alongside the automated coverage.
+    <div class="sidebar">
+        <img src="Funmilola Olorode.jpeg" alt="Funmilola Olorode" class="sidebar-photo">
+        <div class="sidebar-greeting">Hi, I'm Lola 👋</div>
+        <div class="sidebar-role">QA ENGINEER</div>
+
+        <nav class="sidebar-nav">
+            <a href="javascript:void(0)" class="nav-link" data-tab="journey" onclick="showTab('journey', this)">
+                <i class="fa-solid fa-road"></i><span class="nav-label">The Journey</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" data-tab="experience" onclick="showTab('experience', this)">
+                <i class="fa-solid fa-briefcase"></i><span class="nav-label">Experience</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" data-tab="projects" onclick="showTab('projects', this)">
+                <i class="fa-solid fa-diagram-project"></i><span class="nav-label">Capstone Projects</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" data-tab="tech" onclick="showTab('tech', this)">
+                <i class="fa-solid fa-layer-group"></i><span class="nav-label">Tech Stack</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" data-tab="education" onclick="showTab('education', this)">
+                <i class="fa-solid fa-graduation-cap"></i><span class="nav-label">Education</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" data-tab="certifications" onclick="showTab('certifications', this)">
+                <i class="fa-solid fa-certificate"></i><span class="nav-label">Certifications</span>
+            </a>
+            <a href="resume.html">
+                <i class="fa-solid fa-file-lines"></i><span class="nav-label">Resume</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-link" data-tab="offduty" onclick="showTab('offduty', this)">
+                <span class="nav-icon-emoji">🎧</span><span class="nav-label">Off Duty</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-contact">
+            <div class="sidebar-social">
+                <a href="https://linkedin.com/in/funmilola-olorode" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/lola-olorode" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:funmilolaolorode@aol.com" title="Email"><i class="fa-regular fa-envelope"></i></a>
+                <a href="tel:+447901942518" title="Call"><i class="fa-solid fa-phone"></i></a>
+                <span title="London, United Kingdom" class="sidebar-location"><i class="fa-solid fa-location-dot"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="hero-banner">
+            <h1>Funmilola Adesewa Olorode</h1>
+            <div class="tagline">QA Engineer <span class="divider">•</span> ISTQB Certified <span class="divider">•</span> MSc Business Analytics & Big Data</div>
+        </div>
+
+        <div class="about-card" id="about-card">
+            <div class="about-card-label" onclick="toggleAboutCard()">
+                <span>✦ Who am I</span>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div class="about-card-body">
+                <p>
+                I care about whether software actually holds up once it's in someone's hands, not just whether it runs, but whether it does what people were promised and expected it to do. That's the lens I bring to my work: is this stable enough to ship, and will it genuinely serve the people using it? I've built that instinct over years of professional experience, well beyond my time in QA. The quality of a piece of software isn't abstract to me, it shows up in someone's day, in whether their work runs smoothly or gets derailed by something that shouldn't have shipped.
+                </p>
+            </div>
+        </div>
+
+        <div id="journey" class="content-section tab-content">
+            <h2 class="section-heading">The Journey</h2>
+            <p class="journey-text">
+                My path here wasn't a straight line into QA. I started in banking, then moved through customer support, business operations, and data analysis, each role sharpening a different piece of what I now bring to testing: precision under pressure, root-cause thinking, defect documentation, and data-driven judgment. An <strong>MSc in Business Analytics & Big Data</strong> and <strong>ISTQB certification</strong> turned that experience into a formal QA skillset, and I've carried the same instinct across every stop: I don't just check boxes, I care about what "quality" actually means to the people on the other end of the product.
             </p>
-            <div class="project-tags">
-                <span>Python</span><span>Selenium</span><span>pytest</span><span>REST API</span><span>CI/CD</span>
-            </div>
-            <a href="https://github.com/lola-olorode/saucedemo-portfolio" class="project-link" target="_blank">
-                View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
         </div>
 
-        <div class="project-card" style="margin-top: 20px;">
-            <h3 class="project-title">SauceDemo Test Automation Framework (Ruby)</h3>
-            <p class="project-desc">
-                The same site, same Page Object Model pattern, built in Ruby with RSpec and Selenium, the stack I use day-to-day at work. Covers the same login, inventory, and cart/checkout scenarios as the Python version, with environment layering, structured logging, screenshot-on-failure, and a GitHub Actions CI pipeline.
+        <div id="experience" class="content-section tab-content">
+            <h2 class="section-heading">Experience</h2>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">Software Test Engineer</span>
+                    <span class="exp-dates">2024 - Present</span>
+                </div>
+                <p class="exp-company">QV Systems, United Kingdom</p>
+                <ul class="exp-list">
+                    <li>Designed and built a Selenium automation framework (Ruby, RSpec, Page Object Model) with config-driven architecture, timestamped log reporting, and Slack webhook integration for automated result notifications</li>
+                    <li>Design and execute manual test cases each sprint, covering regression, exploratory, and UAT testing</li>
+                    <li>Engineered an automated regression suite carrying out end-to-end testing, backed by additional specs covering functional-level testing</li>
+                    <li>Set up a Postman-based regression suite that validates newly submitted data end-to-end, confirming it's processed correctly and reflected accurately in the UI, rather than relying on static historical figures</li>
+                    <li>Handle REST API testing via Postman and raise defect reports in JIRA with full traceability through fix and retest</li>
+                    <li>Provide go/no-go quality assessments for releases and document test plans and QA processes in Confluence</li>
+                </ul>
+            </div>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">Customer Support Specialist</span>
+                    <span class="exp-dates">2024</span>
+                </div>
+                <p class="exp-company">QV Systems, United Kingdom</p>
+                <ul class="exp-list">
+                    <li>Investigated and resolved software incidents, reducing recurring issues through structured root cause analysis</li>
+                    <li>Worked directly with QA and development teams to prioritise high-impact defects</li>
+                    <li>Supported pre-deployment testing of patches</li>
+                </ul>
+            </div>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">Customer Success Analyst</span>
+                    <span class="exp-dates">2023 - 2024</span>
+                </div>
+                <p class="exp-company">Loro Farms and Tech, Nigeria</p>
+                <ul class="exp-list">
+                    <li>Used SQL and Power BI to analyse customer usage patterns and surface actionable trends</li>
+                    <li>Produced reports that informed product improvements</li>
+                    <li>Translated data insights into clear recommendations for product and engineering stakeholders</li>
+                </ul>
+            </div>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">Business Associate</span>
+                    <span class="exp-dates">2021 - 2022</span>
+                </div>
+                <p class="exp-company">Globacom Ltd, Nigeria</p>
+                <ul class="exp-list">
+                    <li>Identified and documented system defects and usability issues</li>
+                    <li>Conducted structured usability testing as part of product release cycles</li>
+                </ul>
+            </div>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">Customer Support Associate</span>
+                    <span class="exp-dates">2019 - 2020</span>
+                </div>
+                <p class="exp-company">Globacom Ltd, Nigeria</p>
+                <ul class="exp-list">
+                    <li>Maintained a strong SLA resolution rate on technical support cases with clear escalation protocols</li>
+                    <li>Produced internal knowledge base articles to support consistent team responses</li>
+                </ul>
+            </div>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">Bank Teller</span>
+                    <span class="exp-dates">2017 - 2019</span>
+                </div>
+                <p class="exp-company">Access Bank plc, Nigeria</p>
+                <ul class="exp-list">
+                    <li>Processed high-volume daily transactions accurately and in compliance with regulatory requirements</li>
+                    <li>Built an early grounding in precision and process discipline</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="projects" class="content-section tab-content">
+            <h2 class="section-heading">Capstone Projects</h2>
+            <p class="journey-text" style="margin-bottom: 22px;">
+                These aren't projects from my day job, my actual work is proprietary and can't be shared publicly. Instead, these are capstone-style builds I created on public demo sites to demonstrate the same skills, patterns, and standards I apply professionally: Page Object Model architecture, structured logging, CI pipelines, and full test coverage.
             </p>
-            <div class="project-tags">
-                <span>Ruby</span><span>Selenium</span><span>RSpec</span><span>Page Object Model</span><span>CI/CD</span>
+            <div class="project-card">
+                <h3 class="project-title">SauceDemo Test Automation Framework (Python)</h3>
+                <p class="project-desc">
+                    A Selenium + pytest UI automation suite built with the Page Object Model, covering login, inventory sorting, and cart/checkout flows. Includes a parallel API test suite, environment layering, structured logging with screenshot-on-failure, test tagging (smoke/regression/critical-path), and a GitHub Actions CI pipeline. A manual regression suite and requirement-traceability matrix are documented alongside the automated coverage.
+                </p>
+                <div class="project-tags">
+                    <span>Python</span><span>Selenium</span><span>pytest</span><span>REST API</span><span>CI/CD</span>
+                </div>
+                <a href="https://github.com/lola-olorode/saucedemo-portfolio" class="project-link" target="_blank">
+                    View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
             </div>
-            <a href="https://github.com/lola-olorode/saucedemo-ruby-automation" class="project-link" target="_blank">
-                View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="project-card">
+                <h3 class="project-title">SauceDemo Test Automation Framework (Ruby)</h3>
+                <p class="project-desc">
+                    The same site, same Page Object Model pattern, built in Ruby with RSpec and Selenium, the stack I use day-to-day at work. Covers the same login, inventory, and cart/checkout scenarios as the Python version, with environment layering, structured logging, screenshot-on-failure, and a GitHub Actions CI pipeline.
+                </p>
+                <div class="project-tags">
+                    <span>Ruby</span><span>Selenium</span><span>RSpec</span><span>Page Object Model</span><span>CI/CD</span>
+                </div>
+                <a href="https://github.com/lola-olorode/saucedemo-ruby-automation" class="project-link" target="_blank">
+                    View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <div id="tech" class="content-section tab-content">
+            <h2 class="section-heading">Tech Stack</h2>
+            <div class="tech-group">
+                <p class="tech-group-title">Languages</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="devicon-ruby-plain colored"></i> Ruby</span>
+                    <span class="tech-item"><i class="devicon-python-plain colored"></i> Python</span>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">Automation & Testing</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="devicon-selenium-original colored"></i> Selenium</span>
+                    <span class="tech-item"><i class="fa-solid fa-vial"></i> RSpec</span>
+                    <span class="tech-item"><i class="fa-solid fa-flask"></i> pytest</span>
+                    <span class="tech-item"><i class="fa-solid fa-mobile-screen"></i> BrowserStack</span>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">API & Defect Tracking</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="devicon-postman-plain colored"></i> Postman</span>
+                    <span class="tech-item"><i class="devicon-jira-plain colored"></i> JIRA</span>
+                    <span class="tech-item"><i class="devicon-confluence-original colored"></i> Confluence</span>
+                    <span class="tech-item"><i class="devicon-oracle-original colored"></i> Oracle DB</span>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">AI Tools</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="fa-solid fa-robot"></i> Claude</span>
+                    <span class="tech-item"><i class="fa-solid fa-robot"></i> Claude Code</span>
+                    <span class="tech-item"><i class="fa-solid fa-robot"></i> Gemini</span>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">Tooling & Ways of Working</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="devicon-git-plain colored"></i> Git</span>
+                    <span class="tech-item"><i class="devicon-github-original"></i> GitHub</span>
+                    <span class="tech-item"><i class="devicon-githubactions-plain colored"></i> GitHub Actions</span>
+                    <span class="tech-item"><i class="devicon-slack-plain colored"></i> Slack</span>
+                    <span class="tech-item"><i class="devicon-mysql-plain colored"></i> SQL</span>
+                    <span class="tech-item"><i class="fa-solid fa-chart-column"></i> Power BI</span>
+                    <span class="tech-item"><i class="devicon-vscode-plain colored"></i> VS Code</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="education" class="content-section tab-content">
+            <h2 class="section-heading">Education</h2>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">MSc Business Analytics & Big Data</span>
+                    <span class="exp-dates">2024</span>
+                </div>
+                <p class="exp-company">University of Dundee, United Kingdom</p>
+            </div>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">BSc Integrated Science</span>
+                    <span class="exp-dates">2014</span>
+                </div>
+                <p class="exp-company">University of Lagos, Nigeria</p>
+            </div>
+        </div>
+
+        <div id="certifications" class="content-section tab-content">
+            <h2 class="section-heading">Certifications</h2>
+            <div class="exp-entry">
+                <div class="exp-row">
+                    <span class="exp-role">ISTQB Foundation Level</span>
+                </div>
+                <p class="exp-company">International Software Testing Qualifications Board</p>
+            </div>
+        </div>
+
+        <div id="offduty" class="content-section tab-content">
+            <h2 class="section-heading">Off Duty</h2>
+            <div class="tech-group">
+                <p class="tech-group-title">Recently Learned</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Vibe coding</span>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">Favorite Artist</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="fa-solid fa-star"></i> Olivia Dean</span>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">Favorite Song Right Now</p>
+                <div class="tech-grid">
+                    <a href="https://open.spotify.com/track/3DMP0DLdWrH5c6qIsWetET" target="_blank" class="tech-item">
+                        <i class="fa-brands fa-spotify"></i> "Satellite" — Iniko <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem; margin-left: 4px;"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="tech-group">
+                <p class="tech-group-title">Comfort Watch</p>
+                <div class="tech-grid">
+                    <span class="tech-item"><i class="fa-solid fa-clapperboard"></i> An African City</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-banner">
+            <p>Let's build something reliable together.</p>
+            <a href="mailto:funmilolaolorode@aol.com">Let's Talk <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 
-
-    <div class="contact">
-        <p>Connect with me:</p>
-        <div class="social-icons">
-            <a href="https://linkedin.com/in/funmilola-olorode" target="_blank" title="LinkedIn">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/lola-olorode" target="_blank" title="GitHub">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="mailto:funmilolaolorode@aol.com" title="Email">
-                <i class="fa-regular fa-envelope"></i>
-            </a>
-        </div>
-    </div>
-    
 <script>
-function toggleAbout() {
-    var x = document.getElementById("about-section");
-    var e = document.getElementById("experience-section");
-    var p = document.getElementById("projects-section");
-    e.style.display = "none";
-    p.style.display = "none";
-    x.style.display = (x.style.display === "none") ? "block" : "none";
+function toggleAboutCard() {
+    document.getElementById('about-card').classList.toggle('collapsed');
 }
 
-function toggleExperience() {
-    var e = document.getElementById("experience-section");
-    var x = document.getElementById("about-section");
-    var p = document.getElementById("projects-section");
-    x.style.display = "none";
-    p.style.display = "none";
-    e.style.display = (e.style.display === "none") ? "block" : "none";
+function showTab(tabId, linkEl) {
+    var tabs = document.querySelectorAll('.tab-content');
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove('active');
+    }
+    document.getElementById(tabId).classList.add('active');
+
+    var links = document.querySelectorAll('.sidebar-nav .nav-link');
+    for (var j = 0; j < links.length; j++) {
+        links[j].classList.remove('active');
+    }
+    linkEl.classList.add('active');
 }
 
-function toggleProjects() {
-    var p = document.getElementById("projects-section");
-    var x = document.getElementById("about-section");
-    var e = document.getElementById("experience-section");
-    x.style.display = "none";
-    e.style.display = "none";
-    p.style.display = (p.style.display === "none") ? "block" : "none";
-}
+/* ===== Splash Screen ===== */
+(function() {
+    var splash = document.getElementById("splash");
+    var textWrap = document.getElementById("splash-text-wrap");
+    var msg = document.getElementById("splash-msg");
+    var titleEl = document.getElementById("splash-text");
+    var subEl = document.getElementById("splash-subtext");
+    var finished = false;
+
+    var messages = [
+        { title: "Hi there! 👋", sub: "" },
+        { title: "I'm Lola.", sub: "I don't just test. I protect the experience." }
+    ];
+    var i = 0;
+
+    function finishSplash() {
+        if (finished) return;
+        finished = true;
+        splash.classList.add("hide-splash");
+        document.body.classList.remove("splash-active");
+        setTimeout(function() {
+            splash.style.display = "none";
+        }, 900);
+    }
+
+    window.skipSplash = finishSplash;
+
+    function showMessage() {
+        if (finished) return;
+        titleEl.textContent = messages[i].title;
+        subEl.textContent = messages[i].sub;
+        msg.classList.add("msg-visible");
+
+        var holdTime = (i === messages.length - 1) ? 1800 : 1000;
+
+        setTimeout(function() {
+            if (finished) return;
+            msg.classList.remove("msg-visible");
+            setTimeout(function() {
+                if (finished) return;
+                if (i < messages.length - 1) {
+                    i++;
+                    showMessage();
+                } else {
+                    finishSplash();
+                }
+            }, 450);
+        }, holdTime);
+    }
+
+    setTimeout(function() {
+        textWrap.classList.add("visible");
+        setTimeout(showMessage, 300);
+    }, 250);
+})();
 </script>
-    
 
 </body>
 </html>
