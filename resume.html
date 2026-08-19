@@ -64,7 +64,8 @@
         }
 
         .sidebar {
-            width: 300px;
+            flex: 0 0 30%;
+            min-width: 220px;
             padding: 50px 35px;
             background: linear-gradient(180deg, var(--purple) 0%, var(--purple-dark) 100%);
             color: #ffffff;
@@ -85,7 +86,7 @@
         .skill-label { font-size: 0.8rem; color: #ffffff; margin-bottom: 4px; }
         .skill-detail { font-size: 0.75rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
 
-        .main-content { padding: 50px; flex: 1; }
+        .main-content { padding: 50px; flex: 1; min-width: 280px; }
         .summary-box { background: rgba(139, 124, 196, 0.08); border-left: 3px solid var(--purple); border-radius: 0 10px 10px 0; padding: 25px; margin-bottom: 40px; color: var(--text); }
 
         .section-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; margin-bottom: 25px; color: var(--text); }
@@ -97,6 +98,27 @@
         ul { padding-left: 18px; color: var(--text-secondary); font-size: 0.9rem; }
         li { margin-bottom: 8px; }
         li::marker { color: var(--coral); }
+
+        /* Mobile responsive */
+        @media (max-width: 620px) {
+            .no-print-nav { padding: 16px; }
+            .cv-container {
+                flex-direction: column;
+                margin: 0 12px 30px;
+                border-radius: 16px;
+            }
+            .sidebar {
+                width: auto;
+                padding: 32px 24px;
+            }
+            .sidebar h1 { font-size: 1.5rem; }
+            .main-content { padding: 30px 24px; }
+            .exp-header, .exp-sub { flex-direction: column; gap: 2px; }
+        }
+
+        @media (min-width: 621px) and (max-width: 1050px) {
+            .cv-container { margin: 0 16px 40px; }
+        }
 
         /* PRINTING ENGINE FIX */
         @media print {
