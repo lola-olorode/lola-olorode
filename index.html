@@ -719,8 +719,8 @@
 
         <div class="sidebar-contact">
             <div class="sidebar-social">
-                <a href="https://linkedin.com/in/funmilola-olorode" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/lola-olorode" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/funmilola-olorode" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/lola-olorode" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
                 <a href="mailto:funmilolaolorode@aol.com" title="Email"><i class="fa-regular fa-envelope"></i></a>
                 <a href="tel:+447901942518" title="Call"><i class="fa-solid fa-phone"></i></a>
                 <span title="London, United Kingdom" class="sidebar-location"><i class="fa-solid fa-location-dot"></i></span>
@@ -832,29 +832,29 @@
         <div id="projects" class="content-section tab-content">
             <h2 class="section-heading">Capstone Projects</h2>
             <p class="journey-text" style="margin-bottom: 22px;">
-                These aren't projects from my day job, my actual work is proprietary and can't be shared publicly. Instead, these are capstone-style builds I created on public demo sites to demonstrate the same skills, patterns, and standards I apply professionally: Page Object Model architecture, structured logging, CI pipelines, and full test coverage.
+                These aren't projects from my day job, my actual work is proprietary and can't be shared publicly. Instead, these are capstone-style builds I created on public demo sites to demonstrate the same skills, patterns, and standards I apply professionally: Page Object Model architecture, structured logging, CI pipelines, and traceable test coverage, documented gaps included, not hidden.
             </p>
             <div class="project-card">
                 <h3 class="project-title">SauceDemo Test Automation Framework (Python)</h3>
                 <p class="project-desc">
-                    A Selenium + pytest UI automation suite built with the Page Object Model, covering login, inventory sorting, and cart/checkout flows. Includes a parallel API test suite, environment layering, structured logging with screenshot-on-failure, test tagging (smoke/regression/critical-path), and a GitHub Actions CI pipeline. A manual regression suite and requirement-traceability matrix are documented alongside the automated coverage.
+                    A Selenium + pytest UI automation suite built with the Page Object Model, covering login, inventory sorting, and cart/checkout flows. Includes a parallel pytest API suite plus a standalone Postman/Newman collection for manual API regression, environment layering, structured logging with screenshot-on-failure, test tagging (smoke/regression/critical-path), framework-logic unit tests, and a GitHub Actions pipeline that lints (flake8/black) before it tests. A manual regression suite and requirement-traceability matrix are documented alongside the automated coverage.
                 </p>
                 <div class="project-tags">
-                    <span>Python</span><span>Selenium</span><span>pytest</span><span>REST API</span><span>CI/CD</span>
+                    <span>Python</span><span>Selenium</span><span>pytest</span><span>Postman</span><span>CI/CD</span>
                 </div>
-                <a href="https://github.com/lola-olorode/saucedemo-portfolio" class="project-link" target="_blank">
+                <a href="https://github.com/lola-olorode/saucedemo-portfolio" class="project-link" target="_blank" rel="noopener">
                     View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
             <div class="project-card">
                 <h3 class="project-title">SauceDemo Test Automation Framework (Ruby)</h3>
                 <p class="project-desc">
-                    The same site, same Page Object Model pattern, built in Ruby with RSpec and Selenium, the stack I use day-to-day at work. Covers the same login, inventory, and cart/checkout scenarios as the Python version, with environment layering, structured logging, screenshot-on-failure, and a GitHub Actions CI pipeline.
+                    The same site, same Page Object Model pattern, built in Ruby with RSpec and Selenium, the stack I use day-to-day at work. Adds a flows layer above the page objects to orchestrate full journeys (log in, buy something), plus resilient click/type handling that verifies a native browser interaction actually registered before falling back to a JS-dispatched one, for pages that don't always respond to plain WebDriver events. Environment layering, structured logging, screenshot-on-failure, RuboCop, and a GitHub Actions pipeline that lints before it tests, verified passing live end to end.
                 </p>
                 <div class="project-tags">
-                    <span>Ruby</span><span>Selenium</span><span>RSpec</span><span>Page Object Model</span><span>CI/CD</span>
+                    <span>Ruby</span><span>Selenium</span><span>RSpec</span><span>RuboCop</span><span>CI/CD</span>
                 </div>
-                <a href="https://github.com/lola-olorode/saucedemo-ruby-automation" class="project-link" target="_blank">
+                <a href="https://github.com/lola-olorode/saucedemo-ruby-automation" class="project-link" target="_blank" rel="noopener">
                     View Repository <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
@@ -876,6 +876,7 @@
                     <span class="tech-item"><i class="fa-solid fa-vial"></i> RSpec</span>
                     <span class="tech-item"><i class="fa-solid fa-flask"></i> pytest</span>
                     <span class="tech-item"><i class="fa-solid fa-mobile-screen"></i> BrowserStack</span>
+                    <span class="tech-item"><i class="fa-solid fa-magnifying-glass-chart"></i> RuboCop / flake8</span>
                 </div>
             </div>
             <div class="tech-group">
@@ -954,7 +955,7 @@
             <div class="tech-group">
                 <p class="tech-group-title">Favorite Song Right Now</p>
                 <div class="tech-grid">
-                    <a href="https://open.spotify.com/track/3DMP0DLdWrH5c6qIsWetET" target="_blank" class="tech-item">
+                    <a href="https://open.spotify.com/track/3DMP0DLdWrH5c6qIsWetET" target="_blank" rel="noopener" class="tech-item">
                         <i class="fa-brands fa-spotify"></i> "Satellite" — Iniko <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem; margin-left: 4px;"></i>
                     </a>
                 </div>
