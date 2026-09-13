@@ -838,7 +838,7 @@
             <div class="project-card">
                 <h3 class="project-title">SauceDemo Test Automation Framework (Python)</h3>
                 <p class="project-desc">
-                    A Selenium + pytest UI automation suite built with the Page Object Model, covering login, inventory sorting, and cart/checkout flows. Includes a parallel pytest API suite plus a standalone Postman/Newman collection for manual API regression, environment layering, structured logging with screenshot-on-failure, test tagging (smoke/regression/critical-path), framework-logic unit tests, and a GitHub Actions pipeline that lints (flake8/black) before it tests. A manual regression suite and requirement-traceability matrix are documented alongside the automated coverage.
+                    A Selenium + pytest suite for SauceDemo, built with the Page Object Model, covering login, inventory sorting, and the cart/checkout flow. Runs alongside a parallel API suite in pytest plus a standalone Postman/Newman collection for manual checks, with layered environments, screenshot-on-failure logging, smoke/regression/critical-path tagging, unit tests for the framework's own logic, and a GitHub Actions pipeline that lints before it tests. A manual regression suite and requirement-traceability matrix round out the automated coverage.
                 </p>
                 <div class="project-tags">
                     <span>Python</span><span>Selenium</span><span>pytest</span><span>Postman</span><span>CI/CD</span>
@@ -850,7 +850,7 @@
             <div class="project-card">
                 <h3 class="project-title">SauceDemo Test Automation Framework (Ruby)</h3>
                 <p class="project-desc">
-                    The same site, same Page Object Model pattern, built in Ruby with RSpec and Selenium, the stack I use day-to-day at work. Adds a flows layer above the page objects to orchestrate full journeys (log in, buy something), plus resilient click/type handling that verifies a native browser interaction actually registered before falling back to a JS-dispatched one, for pages that don't always respond to plain WebDriver events. Environment layering, structured logging, screenshot-on-failure, RuboCop, and a GitHub Actions pipeline that lints before it tests, verified passing live end to end.
+                    The same site and the same Page Object Model pattern, this time in Ruby with RSpec and Selenium, the stack I actually use day-to-day at work. A flows layer sits above the page objects to orchestrate full journeys like logging in or buying something. Also includes layered environments, structured logging, screenshot-on-failure, RuboCop, and a GitHub Actions pipeline that lints before it tests, all verified passing live end to end.
                 </p>
                 <div class="project-tags">
                     <span>Ruby</span><span>Selenium</span><span>RSpec</span><span>RuboCop</span><span>CI/CD</span>
