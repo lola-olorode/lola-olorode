@@ -70,6 +70,7 @@
             padding: 50px 35px;
             background: linear-gradient(180deg, var(--purple) 0%, var(--purple-dark) 100%);
             color: #ffffff;
+            overflow-wrap: anywhere;
         }
 
         .sidebar h1 { font-size: 1.7rem; font-weight: 700; margin: 0; color: #ffffff; }
@@ -87,10 +88,7 @@
         .skill-label { font-size: 0.8rem; color: #ffffff; margin-bottom: 4px; }
         .skill-detail { font-size: 0.75rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
 
-        .main-content { padding: 50px; flex: 1; min-width: 280px; }
-        .skills-list { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0 0 40px; font-size: 0.88rem; }
-        .skills-list dt { font-weight: 600; color: var(--purple-dark); }
-        .skills-list dd { margin: 0; color: var(--text-secondary); }
+        .main-content { padding: 50px; flex: 1; min-width: 0; overflow-wrap: break-word; }
         .summary-box { background: rgba(139, 124, 196, 0.08); border-left: 3px solid var(--purple); border-radius: 0 10px 10px 0; padding: 25px; margin-bottom: 40px; color: var(--text); }
 
         .section-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; margin-bottom: 25px; color: var(--text); }
@@ -113,14 +111,13 @@
             }
             .sidebar {
                 width: auto;
+                min-width: 0;
                 padding: 32px 24px;
             }
             .sidebar h1 { font-size: 1.5rem; }
             .main-content { padding: 30px 24px; }
             .exp-header, .exp-sub { flex-direction: column; gap: 2px; }
-            .skills-list { grid-template-columns: 1fr; gap: 2px; }
-            .skills-list dd { margin-bottom: 10px; }
-        }
+                }
 
         @media (min-width: 621px) and (max-width: 1050px) {
             .cv-container { margin: 0 16px 40px; }
@@ -134,7 +131,7 @@
             .sidebar { width: 30% !important; background: #f8fafc !important; color: black !important; border-right: 1px solid #eee !important; -webkit-print-color-adjust: exact; }
             .main-content { width: 70% !important; color: black !important; }
             .contact-item i, .contact-link i, .exp-sub, .sidebar-tagline { color: #6f5fa8 !important; }
-            h1, h2, .sidebar-h2, .section-title, ul, li, .skills-list dt, .skills-list dd, .skill-label, .skill-detail, .contact-item, .contact-link, .sidebar h1 { color: black !important; }
+            h1, h2, .sidebar-h2, .section-title, ul, li, .skill-label, .skill-detail, .contact-item, .contact-link, .sidebar h1 { color: black !important; }
         }
     </style>
 </head>
@@ -203,6 +200,46 @@
             </div>
 
             <div class="sidebar-section">
+                <h2 class="sidebar-h2">Skills</h2>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Functional Testing</strong></div>
+                    <div class="skill-detail">Acceptance criteria review, UAT, regression, exploratory, integration, sanity, smoke, usability</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>API Testing</strong></div>
+                    <div class="skill-detail">REST API testing, validating data flows, integration accuracy and error handling across system boundaries</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Non Functional Testing</strong></div>
+                    <div class="skill-detail">Cross environment testing</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Defect Management</strong></div>
+                    <div class="skill-detail">Logging bugs, root cause analysis, retesting and tracking through to resolution</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Test Documentation</strong></div>
+                    <div class="skill-detail">Test plans, test cases, exploratory testing notes, QA process guides and integration test documentation in Confluence</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Automation Practice</strong></div>
+                    <div class="skill-detail">Config driven suites, repetitive regression automation, failure triage</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>AI Assisted Testing</strong></div>
+                    <div class="skill-detail">Test scenario drafting, automation script drafting, critical review of AI output, flaky test and weak assertion detection</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Release Quality</strong></div>
+                    <div class="skill-detail">Go or no go assessments, risk based coverage decisions, release smoke testing</div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-label"><strong>Ways of Working</strong></div>
+                    <div class="skill-detail">Agile sprint ceremonies, cross functional collaboration, stakeholder reporting</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
                 <h2 class="sidebar-h2">Education</h2>
                 <p style="font-size: 0.85rem; margin-bottom: 5px;"><strong>MSc Business Analytics & Big Data</strong> (Merit)<br>University of Dundee, 2024</p>
                 <p style="font-size: 0.85rem;"><strong>BSc (Ed.) Integrated Science</strong><br>University of Lagos, 2014</p>
@@ -219,19 +256,6 @@
             <div class="summary-box">
                 Test Engineer with nine years of experience across banking, customer service, business analysis and fintech testing. I started in financial services, where accuracy and compliance shaped every transaction, then moved through telecoms support, usability testing and customer analytics before specialising in QA. Today I independently own quality across web based fintech platforms, working with developers from refinement through to release, and automating repetitive manual regression testing end to end. I take personal accountability for releases going out smoothly, and I want to help build a quality function from the ground up.
             </div>
-
-            <h2 class="section-title">Skills</h2>
-            <dl class="skills-list">
-                <dt>Functional testing</dt><dd>Acceptance criteria review, UAT, regression, exploratory, integration, sanity, smoke, usability.</dd>
-                <dt>API testing</dt><dd>REST API testing, validating data flows, integration accuracy and error handling across system boundaries.</dd>
-                <dt>Non functional testing</dt><dd>Cross environment testing.</dd>
-                <dt>Defect management</dt><dd>Logging bugs, root cause analysis, retesting and tracking through to resolution.</dd>
-                <dt>Test documentation</dt><dd>Test plans, test cases, exploratory testing notes, QA process guides and integration test documentation in Confluence.</dd>
-                <dt>Automation practice</dt><dd>Config driven suites, repetitive regression automation, failure triage.</dd>
-                <dt>AI assisted testing</dt><dd>Test scenario drafting, automation script drafting, critical review of AI output, flaky test and weak assertion detection.</dd>
-                <dt>Release quality</dt><dd>Go or no go assessments, risk based coverage decisions, release smoke testing.</dd>
-                <dt>Ways of working</dt><dd>Agile sprint ceremonies, cross functional collaboration, stakeholder reporting.</dd>
-            </dl>
 
             <h2 class="section-title">Experience</h2>
 
@@ -296,5 +320,7 @@
     <script>
         // Progress bars removed in favor of a plain skills list: no animation needed.
     </script>
+    <script data-goatcounter="https://lola-olorode.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
